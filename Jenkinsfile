@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment{
             PATH="$PATH:/usr/share/apache-maven"
+            registry = "904440666777.dkr.ecr.us-east-1.amazonaws.com/jenkins-pipeline-demo"
     }
 stages {
       stage ('Run entire Build'){
@@ -18,6 +19,18 @@ stages {
                 jacoco()
                 }
                }
+           stage('Build Docker Image') {
+              steps {
+                  sh 'docker build -t $registry:dev .'            
+              }
+          }
+          stage('Push to Amazon ECR'){
+              steps {
+                  sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 904440666777.dkr.ecr.us-east-1.amazonaws.com'
+                  sh 'docker push $registry:dev'
+                    }
+            } 
+
        }
       }
 }
