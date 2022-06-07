@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment{
+            PATH="$PATH:/usr/share/apache-maven"
+    }
 stages {
       stage ('Run entire Build'){
             
