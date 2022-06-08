@@ -30,6 +30,15 @@ stages {
                   sh 'docker push $registry:dev'
                     }
             } 
+           stage ('Deploy to EKS cluster') {
+	             steps{
+                        kubernetesDeploy(
+                        configs: 'deployment.yaml',
+                        kubeconfigId: 'K8s',
+                        enableConfigSubstitution: true
+                                        )  
+                    }
+                                            } 
 
        }
       }
