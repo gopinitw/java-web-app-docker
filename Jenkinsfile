@@ -33,7 +33,7 @@ stages {
            stage ('Deploy to EKS cluster') {
 	             steps{
                         kubernetesDeploy(
-                        configs: 'deployment.yaml',
+                        configs: 'deployment.yml',
                         kubeconfigId: 'K8s',
                         enableConfigSubstitution: true
                                         )  
