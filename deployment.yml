@@ -1,18 +1,16 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: javawebapp-ENVIRONMENT-BUILD_NUMBER
+  name: javawebapp
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
         app: javawebapp
-        version: "BUILD_NUMBER"
     spec:
       containers:
-      - name: javawebapp-ENVIRONMENT-BUILD_NUMBER
+      - name: javawebapp
         image: 904440666777.dkr.ecr.us-east-1.amazonaws.com/jenkins-pipeline-demo
-        imagePullPolicy: Always
         ports:
         - containerPort: 8080
