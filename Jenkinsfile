@@ -26,7 +26,7 @@ stages {
           }
           stage('Push to Amazon ECR'){
               steps {
-                  sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 904440666777.dkr.ecr.us-east-1.amazonaws.com'
+                  sh 'docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 904440666777.dkr.ecr.us-east-1.amazonaws.com'
                   sh 'docker push $registry:dev'
                     }
             } 
