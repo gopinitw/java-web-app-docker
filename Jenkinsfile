@@ -19,7 +19,7 @@ stages {
                 jacoco()
                 }
                }
-	    stage('build & SonarQube analysis') {
+	    stage('SonarQube analysis') {
             steps {
               withSonarQubeEnv('SonarQube') {
                 sh "sonarQube/bin/sonar-scanner \
