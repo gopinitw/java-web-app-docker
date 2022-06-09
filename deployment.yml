@@ -10,7 +10,7 @@ spec:
         app: jenkins-pipeline-demo
     spec:
       containers:
-      - name: javawebapp
+      - name: jenkins-pipeline-demo
         image: 904440666777.dkr.ecr.us-east-1.amazonaws.com/jenkins-pipeline-demo
         ports:
         - containerPort: 8080
