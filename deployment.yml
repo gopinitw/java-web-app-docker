@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: javawebapp
+  name: jenkins-pipeline-demo
 spec:
   replicas: 3
   template:
     metadata:
       labels:
-        app: javawebapp
+        app: jenkins-pipeline-demo
     spec:
       containers:
       - name: javawebapp
