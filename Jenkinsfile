@@ -23,7 +23,7 @@ stages {
 	    stage('SonarQube analysis') {
             steps {
               withSonarQubeEnv('SonarQube') {
-                sh "$(scannerHome)/bin/sonar-scanner \
+                sh "${scannerHome}/bin/sonar-scanner \
                    -Dsonar.login=admin \
                    -Dsonar.password=Vijaya@172510 \
                    -Dsonar.projectKey=demoapp \
