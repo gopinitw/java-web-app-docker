@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment{
             PATH="$PATH:/usr/share/apache-maven"
+	    scannerHome = tool 'SonarQube'
             registry = "904440666777.dkr.ecr.us-east-1.amazonaws.com/jenkins-pipeline-demo"
     }
 stages {
@@ -22,7 +23,7 @@ stages {
 	    stage('SonarQube analysis') {
             steps {
               withSonarQubeEnv('SonarQube') {
-                sh "sonarQube/bin/sonar-scanner \
+                sh "$(scannerHome)/bin/sonar-scanner \
                    -Dsonar.login=admin \
                    -Dsonar.password=Vijaya@172510 \
                    -Dsonar.projectKey=demoapp \
