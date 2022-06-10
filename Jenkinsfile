@@ -33,7 +33,7 @@ stages {
        }
 	      post{
             always{
-                      emailext attachLog: 'true', body: '', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'riya.c.srivastava@capgemini.com, koduri.siva-kumar@capgemini.com, vijjapu-bhairava.swamy@capgemini.com, swapnil.a.pednekar@capgemini.com, jyoti.pant@capgemini.com'  
+                      emailext attachLog: 'true', body: '', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'gopi199503@gmail.com'  
                       }
                  }
         }
