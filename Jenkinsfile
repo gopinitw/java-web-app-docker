@@ -31,11 +31,13 @@ stages {
                     }
             } 
 	       stage ('start') {
+		       steps {
 	         post{
             always{
                       emailext attachLog: 'true', body: '', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'gopi199503@gmail.com'  
                       }
                  }
+	       }
 	       }
        }
       }
