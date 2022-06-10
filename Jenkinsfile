@@ -29,20 +29,13 @@ stages {
                   sh 'docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 904440666777.dkr.ecr.us-east-1.amazonaws.com'
                   sh 'docker push $registry:dev'
                     }
-            } 
-	      stage('Send Email') {
-            steps {
-            node ('master'){
-                echo 'Send Email'
-    post {
-        always {
-                      emailext attachLog: 'true', body: '', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'gopi199503@gmail.com'  
+            }
+       }
+	      post{
+            always{
+                      emailext attachLog: 'true', body: '', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'riya.c.srivastava@capgemini.com, koduri.siva-kumar@capgemini.com, vijjapu-bhairava.swamy@capgemini.com, swapnil.a.pednekar@capgemini.com, jyoti.pant@capgemini.com'  
                       }
                  }
-	       }
-	       }
-       }
-}
-      }
-}
+        }
+    }
 }
