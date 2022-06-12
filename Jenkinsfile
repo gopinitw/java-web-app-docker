@@ -19,6 +19,16 @@ stages {
                 jacoco()
                 }
                }
+	        stage('Junit Test execution and report generation') {
+             steps{
+                 sh 'mvn test'
+                  }
+             post{
+                 always{
+                     junit '**/target/surefire-reports/TEST-*.xml'
+                        }
+                 }
+            }
            stage('Build Docker Image') {
               steps {
                   sh 'docker build -t $registry:dev .'            
