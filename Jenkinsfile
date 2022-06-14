@@ -19,16 +19,6 @@ stages {
                 jacoco()
                 }
                }
-	        stage('Junit Test execution and report generation') {
-             steps{
-                 sh 'mvn test'
-                  }
-             post{
-                 always{
-                     junit '**/target/TEST-*.xml'
-                        }
-                 }
-            }
            stage('Build Docker Image') {
               steps {
                   sh 'docker build -t $registry:dev .'            
@@ -40,6 +30,15 @@ stages {
                   sh 'docker push $registry:dev'
                     }
             }
+	        stage ('Deploy to EKS cluster') {
+	             steps{
+                        kubernetesDeploy(
+                        configs: 'deployment.yaml',
+                        kubeconfigId: 'K8s',
+                        enableConfigSubstitution: true
+                                        )  
+                    }
+                                            } 
        }
 	     
         }
