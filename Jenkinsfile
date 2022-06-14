@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment{
             PATH="$PATH:/usr/share/apache-maven"
-            registry = "904440666777.dkr.ecr.us-east-1.amazonaws.com/jenkins-pipeline-demo"
+            registry = "904440666777.dkr.ecr.us-east-1.amazonaws.com/jenkins-pipeline-demo3"
     }
 stages {
       stage ('Run entire Build'){
