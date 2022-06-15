@@ -1,16 +1,54 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jenkins-pipeline-demo
+  name: fairi-case-dev
+  namespace: development
+  labels:
+    app: fairi-case-dev
+    tier: backend
 spec:
-  replicas: 3
+  selector:
+      matchLabels:
+        app: fairi-case-dev
+        service: fairi-case-svc-dev
+  replicas: 1
   template:
     metadata:
       labels:
-        app: jenkins-pipeline-demo
+        app: fairi-case-dev
+        service: fairi-case-svc-dev
     spec:
       containers:
-      - name: jenkins-pipeline-demo
-        image: 904440666777.dkr.ecr.us-east-1.amazonaws.com/jenkins-pipeline-demo
-        ports:
-        - containerPort: 8080
+        - name: fairi-case-dev
+          image: 904440666777.dkr.ecr.us-east-1.amazonaws.com/jenkins-pipeline-demo3:dev_${BUILD_NUMBER}
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8083
+              protocol: TCP
+              
+-------
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fairi-case-svc-dev
+  namespace: development
+  labels:
+    service: fairi-case-svc-dev
+spec:
+  type: NodePort
+  selector:
+    app: fairi-case-dev
+    service: fairi-case-svc-dev
+  ports:
+      # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
+    - port: 8083
+      targetPort: http
+      protocol: TCP
+      name: http
+
+
+                                                                                                                               47,1          Bot
+
+                                                                                    
